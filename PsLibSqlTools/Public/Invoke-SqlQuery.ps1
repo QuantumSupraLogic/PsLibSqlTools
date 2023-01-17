@@ -7,7 +7,7 @@
 #endregion
 
 #region code
-function Invoke-Sql {
+function Invoke-SqlQuery {
     param(
         #DataSource in format ServerName\InstanceName
         [Parameter(Mandatory = $true)]
