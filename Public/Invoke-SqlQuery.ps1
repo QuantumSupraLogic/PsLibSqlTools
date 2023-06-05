@@ -30,7 +30,7 @@ function Invoke-SqlQuery {
     $databaseName = $databaseName -replace '\[', '' -replace '\]', ''
     $connectionString = "Data Source=$dataSource; " +
     "Integrated Security=SSPI; " +
-    "Initial Catalog=$database"
+    "Initial Catalog=$databaseName"
 
     $Connection = New-Object System.Data.SQLClient.SQLConnection
     $Connection.ConnectionString = $ConnectionString
