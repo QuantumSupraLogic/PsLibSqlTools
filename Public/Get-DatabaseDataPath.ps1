@@ -1,3 +1,5 @@
+Set-StrictMode -Version 3.0
+
 function Get-DatabaseDataPath {
     param (
         [Parameter(Mandatory = $true)]

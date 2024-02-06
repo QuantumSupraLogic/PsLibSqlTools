@@ -1,12 +1,7 @@
-#region documentation
-#execute queries on a sql server
-#endregion
-
-#region scriptheader
 #requires -version 3.0
-#endregion
 
-#region code
+Set-StrictMode -Version 3.0
+
 function Invoke-SqlQuery {
     param(
         #DataSource in format ServerName\InstanceName
@@ -18,7 +13,7 @@ function Invoke-SqlQuery {
         [ValidateNotNullOrEmpty()]      
         [string]
         $databaseName,
-        [Parameter(Mandatory = $true, ValueFromPipeLine=$true)]     
+        [Parameter(Mandatory = $true, ValueFromPipeLine = $true)]     
         [ValidateNotNullOrEmpty()]   
         [string]
         $sqlQuery,
@@ -29,7 +24,7 @@ function Invoke-SqlQuery {
     
     $databaseName = $databaseName -replace '\[', '' -replace '\]', ''
     $connectionString = "Data Source=$dataSource; " +
-    "Integrated Security=SSPI; " +
+    'Integrated Security=SSPI; ' +
     "Initial Catalog=$databaseName"
 
     $Connection = New-Object System.Data.SQLClient.SQLConnection
@@ -44,8 +39,7 @@ function Invoke-SqlQuery {
     }
     $adapter = New-Object System.Data.sqlclient.sqlDataAdapter $command
     $dataset = New-Object System.Data.DataSet
-    write-output $adapter.Fill($dataSet) | Out-Null
+    Write-Output $adapter.Fill($dataSet) | Out-Null
     $connection.Close()
     return $dataSet.Tables
 }
-#endregion
